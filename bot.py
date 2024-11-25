@@ -1,17 +1,26 @@
 import os
 import telebot
 from telebot import types
-import requests
+from flask import Flask, request
 from io import BytesIO
 
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 bot = telebot.TeleBot(TELEGRAM_TOKEN)
+
+app = Flask(__name__)
 
 #-------------------------------------------------------------------------------
 # Biến chung:
 welcome_called = False
 started = False
 #-------------------------------------------------------------------------------
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    json_str = request.get_data().decode('UTF-8')
+    update = telebot.types.Update.de_json(json_str)
+    bot.process_new_updates([update])
+    return '', 200
 
 @bot.message_handler(commands=['start'])
 @bot.message_handler(func=lambda message: message.text.lower() == "start")
@@ -216,4 +225,12 @@ def echo_unav(message):
     except Exception as e:
         bot.send_message(6180286860, e)
 
-bot.infinity_polling()
+@app.route('/set_webhook', methods=['GET'])
+def set_webhook():
+    webhook_url = "https://YOUR_SERVER_URL/webhook"  # Thay bằng URL của bạn
+    bot.remove_webhook()
+    bot.set_webhook(url=webhook_url)
+    return "Webhook set", 200
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000)
