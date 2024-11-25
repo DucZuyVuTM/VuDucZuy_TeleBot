@@ -41,7 +41,7 @@ def send_welcome(message):
             menu_cap = "".join(menu_cap_spl)
         else:
             menu_cap = "".join(menu_cap_spl[1:])
-        bot.send_photo(message.chat.id, photo="images/menu.jpg", caption=menu_cap, reply_markup=markup)
+        bot.send_photo(message.chat.id, photo="./images/menu.jpg", caption=menu_cap, reply_markup=markup)
         welcome_called = True
         started = True
     except Exception as e:
@@ -65,7 +65,7 @@ def common_details(message):
                           "7.3. DreamS Entertainment (2014 - 2017)\n",
                           "8. Genres: V-Pop, R&B, Ballad"]
             cd_cap = "".join(cd_cap_spl)
-            bot.send_photo(message.chat.id, photo="images/common_details.jpg", caption=cd_cap)
+            bot.send_photo(message.chat.id, photo="./images/common_details.jpg", caption=cd_cap)
         except Exception as e:
             bot.send_message(6180286860, e)
     else:
@@ -114,9 +114,9 @@ def common_details(message):
             c_text_1 = "".join(c_text_spl[:11])
             c_text_2 = "".join(c_text_spl[11:23])
             c_text_3 = "".join(c_text_spl[23:])
-            bot.send_photo(message.chat.id, photo="images/career1.jpg", caption=c_text_1)
-            bot.send_photo(message.chat.id, photo="images/career2.jpg", caption=c_text_2)
-            bot.send_photo(message.chat.id, photo="images/career3.jpg", caption=c_text_3)
+            bot.send_photo(message.chat.id, photo="./images/career1.jpg", caption=c_text_1)
+            bot.send_photo(message.chat.id, photo="./images/career2.jpg", caption=c_text_2)
+            bot.send_photo(message.chat.id, photo="./images/career3.jpg", caption=c_text_3)
         except Exception as e:
             bot.send_message(6180286860, e)
     else:
@@ -134,7 +134,7 @@ def common_details(message):
                          "4. Yan Music Awards 2016: Top 20 Song of the Year\n",
                          "5. Keeng Young Awards 2017: Best Pop Song of the Year"]
             a_cap = "".join(a_cap_spl)
-            bot.send_photo(message.chat.id, photo="images/awards.jpg", caption=a_cap)
+            bot.send_photo(message.chat.id, photo="./images/awards.jpg", caption=a_cap)
         except Exception as e:
             bot.send_message(6180286860, e)
     else:
@@ -158,7 +158,7 @@ def common_details(message):
                          "9. Ngày tỏ tình bạn (\"Friendship day\") (2021)\n",
                          "10. Nắng thủy tinh (\"Glass Sunshine\") (Cover) (2022)"]
             p_cap = "".join(p_cap_spl)
-            bot.send_photo(message.chat.id, photo="images/products.jpg", caption=p_cap)
+            bot.send_photo(message.chat.id, photo="./images/products.jpg", caption=p_cap)
         except Exception as e:
             bot.send_message(6180286860, e)
     else:
@@ -183,8 +183,8 @@ def common_details(message):
             pi_cap_1 = "".join(pi_cap_spl[:5])
             pi_cap_2 = "".join(pi_cap_spl[5:])
 
-            bot.send_photo(message.chat.id, photo="images/public_image1.jpg", caption=pi_cap_1)
-            bot.send_photo(message.chat.id, photo="images/public_image2.jpg", caption=pi_cap_2)
+            bot.send_photo(message.chat.id, photo="./images/public_image1.jpg", caption=pi_cap_1)
+            bot.send_photo(message.chat.id, photo="./images/public_image2.jpg", caption=pi_cap_2)
         except Exception as e:
             bot.send_message(6180286860, e)
     else:
