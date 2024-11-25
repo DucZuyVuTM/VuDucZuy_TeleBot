@@ -40,8 +40,9 @@ def send_welcome(message):
         if welcome_called == False:
             menu_cap = "".join(menu_cap_spl)
         else:
-            menu_cap = "".join(menu_cap_spl[1:])
-        bot.send_photo(message.chat.id, photo="./images/menu.jpg", caption=menu_cap, reply_markup=markup)
+            menu_cap = "".join(menu_cap_spl[1:])            
+        with open("./images/menu.jpg", "rb") as photo:
+            bot.send_photo(message.chat.id, photo=photo, caption=menu_cap, reply_markup=markup)
         welcome_called = True
         started = True
     except Exception as e:
@@ -65,7 +66,8 @@ def common_details(message):
                           "7.3. DreamS Entertainment (2014 - 2017)\n",
                           "8. Genres: V-Pop, R&B, Ballad"]
             cd_cap = "".join(cd_cap_spl)
-            bot.send_photo(message.chat.id, photo="./images/common_details.jpg", caption=cd_cap)
+            with open("./images/common_details.jpg", "rb") as photo:
+                bot.send_photo(message.chat.id, photo=photo, caption=cd_cap)
         except Exception as e:
             bot.send_message(6180286860, e)
     else:
@@ -114,9 +116,12 @@ def common_details(message):
             c_text_1 = "".join(c_text_spl[:11])
             c_text_2 = "".join(c_text_spl[11:23])
             c_text_3 = "".join(c_text_spl[23:])
-            bot.send_photo(message.chat.id, photo="./images/career1.jpg", caption=c_text_1)
-            bot.send_photo(message.chat.id, photo="./images/career2.jpg", caption=c_text_2)
-            bot.send_photo(message.chat.id, photo="./images/career3.jpg", caption=c_text_3)
+            with open("./images/career1.jpg", "rb") as photo:
+                bot.send_photo(message.chat.id, photo=photo, caption=c_text_1)
+            with open("./images/career2.jpg", "rb") as photo:
+                bot.send_photo(message.chat.id, photo=photo, caption=c_text_2)
+            with open("./images/career3.jpg", "rb") as photo:
+                bot.send_photo(message.chat.id, photo=photo, caption=c_text_3)
         except Exception as e:
             bot.send_message(6180286860, e)
     else:
@@ -134,7 +139,8 @@ def common_details(message):
                          "4. Yan Music Awards 2016: Top 20 Song of the Year\n",
                          "5. Keeng Young Awards 2017: Best Pop Song of the Year"]
             a_cap = "".join(a_cap_spl)
-            bot.send_photo(message.chat.id, photo="./images/awards.jpg", caption=a_cap)
+            with open("./images/awards.jpg", "rb") as photo:
+                bot.send_photo(message.chat.id, photo=photo, caption=a_cap)
         except Exception as e:
             bot.send_message(6180286860, e)
     else:
@@ -158,7 +164,8 @@ def common_details(message):
                          "9. Ngày tỏ tình bạn (\"Friendship day\") (2021)\n",
                          "10. Nắng thủy tinh (\"Glass Sunshine\") (Cover) (2022)"]
             p_cap = "".join(p_cap_spl)
-            bot.send_photo(message.chat.id, photo="./images/products.jpg", caption=p_cap)
+            with open("./images/products.jpg", "rb") as photo:
+                bot.send_photo(message.chat.id, photo=photo, caption=p_cap)
         except Exception as e:
             bot.send_message(6180286860, e)
     else:
@@ -182,9 +189,10 @@ def common_details(message):
                           "Autobiography: She has written a biography named \"SUNI STORY\", sharing some lifehacks, experience and optimism to other people."]
             pi_cap_1 = "".join(pi_cap_spl[:5])
             pi_cap_2 = "".join(pi_cap_spl[5:])
-
-            bot.send_photo(message.chat.id, photo="./images/public_image1.jpg", caption=pi_cap_1)
-            bot.send_photo(message.chat.id, photo="./images/public_image2.jpg", caption=pi_cap_2)
+            with open("./images/public_image1.jpg", "rb") as photo:
+                bot.send_photo(message.chat.id, photo=photo, caption=pi_cap_1)
+            with open("./images/public_image2.jpg", "rb") as photo:
+                bot.send_photo(message.chat.id, photo=photo, caption=pi_cap_2)
         except Exception as e:
             bot.send_message(6180286860, e)
     else:
