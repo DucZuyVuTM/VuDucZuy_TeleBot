@@ -29,14 +29,6 @@ def send_welcome(message):
             ext_d = types.KeyboardButton(ext)
             markup.row(ext_d)
 
-        menu_img_url = "https://nld.mediacdn.vn/291774122806476800/2024/3/6/suni-ha-linh-la-ai-chi-dep-dap-gio-re-song-trung-2024-10-1709703578707385103856.jpg"
-
-        # Tải ảnh từ URL
-        response = requests.get(menu_img_url)
-
-        # Sử dụng BytesIO để xử lý tệp nhị phân của ảnh
-        menu_img = BytesIO(response.content)
-
         menu_cap_spl = ["Hello! You're interested about Suni? Stay tuned for more!\n\n",
                         "Here is the information list about Suni:\n",
                         "1. Common details\n",
@@ -49,7 +41,7 @@ def send_welcome(message):
             menu_cap = "".join(menu_cap_spl)
         else:
             menu_cap = "".join(menu_cap_spl[1:])
-        bot.send_photo(message.chat.id, photo=menu_img, caption=menu_cap, reply_markup=markup)
+        bot.send_photo(message.chat.id, photo="images/menu.jpg", caption=menu_cap, reply_markup=markup)
         welcome_called = True
         started = True
     except Exception as e:
@@ -60,14 +52,6 @@ def send_welcome(message):
 def common_details(message):
     if started == True:
         try:
-            cd_img_url = "https://images2.thanhnien.vn/528068263637045248/2023/7/9/qmg8499-1688909454109767523297.jpg"
-
-            # Tải ảnh từ URL
-            response = requests.get(cd_img_url)
-
-            # Sử dụng BytesIO để xử lý tệp nhị phân của ảnh
-            cd_img = BytesIO(response.content)
-
             cd_cap_spl = ["Common details:\n\n",
                           "1. Real name: Ngo Dang Thu Giang\n",
                           "2. Date of Birth: 6/09/1990\n",
@@ -81,7 +65,7 @@ def common_details(message):
                           "7.3. DreamS Entertainment (2014 - 2017)\n",
                           "8. Genres: V-Pop, R&B, Ballad"]
             cd_cap = "".join(cd_cap_spl)
-            bot.send_photo(message.chat.id, photo=cd_img, caption=cd_cap)
+            bot.send_photo(message.chat.id, photo="images/common_details.jpg", caption=cd_cap)
         except Exception as e:
             bot.send_message(6180286860, e)
     else:
@@ -92,34 +76,6 @@ def common_details(message):
 def common_details(message):
     if started == True:
         try:
-            c_img_url = "https://kenh14cdn.com/thumb_w/660/2018/8/20/img9168-15347640493421676891717.jpg"
-
-            # Tải ảnh từ URL
-            response = requests.get(c_img_url)
-
-            # Sử dụng BytesIO để xử lý tệp nhị phân của ảnh
-            c_img_1 = BytesIO(response.content)
-
-            # -----
-
-            c_img_url = "https://64.media.tumblr.com/6518b0c16f7d8698f9aff6307ade68ac/6a0bc069d49a0364-76/s1280x1920/63be7e881478925d4f21344e06feb3be9e69ee40.png"
-
-            # Tải ảnh từ URL
-            response = requests.get(c_img_url)
-
-            # Sử dụng BytesIO để xử lý tệp nhị phân của ảnh
-            c_img_2 = BytesIO(response.content)
-
-            # -----
-
-            c_img_url = "https://cdn.vovlive.vn/2022/07/04/vov.vn-sites-default-files-styles-large-public-2022-07-_qmg_9527.jpg"
-
-            # Tải ảnh từ URL
-            response = requests.get(c_img_url)
-
-            # Sử dụng BytesIO để xử lý tệp nhị phân của ảnh
-            c_img_3 = BytesIO(response.content)
-
             c_text_spl = ["Suni Ha Linh's singing career:\n\n",
                           "2008: First prize in Cleverteam Superstar contest.\n",
                           "2012: Runner-up in Vietnam's Kpop Star Hunt season 2.\n",
@@ -158,9 +114,9 @@ def common_details(message):
             c_text_1 = "".join(c_text_spl[:11])
             c_text_2 = "".join(c_text_spl[11:23])
             c_text_3 = "".join(c_text_spl[23:])
-            bot.send_photo(message.chat.id, photo=c_img_1, caption=c_text_1)
-            bot.send_photo(message.chat.id, photo=c_img_2, caption=c_text_2)
-            bot.send_photo(message.chat.id, photo=c_img_3, caption=c_text_3)
+            bot.send_photo(message.chat.id, photo="images/career1.jpg", caption=c_text_1)
+            bot.send_photo(message.chat.id, photo="images/career2.jpg", caption=c_text_2)
+            bot.send_photo(message.chat.id, photo="images/career3.jpg", caption=c_text_3)
         except Exception as e:
             bot.send_message(6180286860, e)
     else:
@@ -171,14 +127,6 @@ def common_details(message):
 def common_details(message):
     if started == True:
         try:
-            a_img_url = "https://photo.znews.vn/w660/Uploaded/unvjuas/2019_08_30/Suni_Ha_Linh_tt_2.jpg"
-
-            # Tải ảnh từ URL
-            response = requests.get(a_img_url)
-
-            # Sử dụng BytesIO để xử lý tệp nhị phân của ảnh
-            a_img = BytesIO(response.content)
-
             a_cap_spl = ["Suni Ha Linh's Awards:\n\n",
                          "1. Zing Music Awards 2016: Best R&B / Soul Song of the Year\n",
                          "2. Làn sóng Xanh 2016 (\"The Green Wave\"): Top 10 Song of the Year\n",
@@ -186,7 +134,7 @@ def common_details(message):
                          "4. Yan Music Awards 2016: Top 20 Song of the Year\n",
                          "5. Keeng Young Awards 2017: Best Pop Song of the Year"]
             a_cap = "".join(a_cap_spl)
-            bot.send_photo(message.chat.id, photo=a_img, caption=a_cap)
+            bot.send_photo(message.chat.id, photo="images/awards.jpg", caption=a_cap)
         except Exception as e:
             bot.send_message(6180286860, e)
     else:
@@ -197,14 +145,6 @@ def common_details(message):
 def common_details(message):
     if started == True:
         try:
-            p_img_url = "https://media.yeah1.com/files/yenle/2022/07/03/qmg_9566-203010.jpg"
-
-            # Tải ảnh từ URL
-            response = requests.get(p_img_url)
-
-            # Sử dụng BytesIO để xử lý tệp nhị phân của ảnh
-            p_img = BytesIO(response.content)
-
             p_cap_spl = ["*) 41 is the number of products, including new songs and covers\n\n",
                          "Top 10 Featured Songs:\n\n",
                          "1. Cảm ơn người đã rời xa tôi (\"Thank you for leaving me\") (2015)\n",
@@ -218,7 +158,7 @@ def common_details(message):
                          "9. Ngày tỏ tình bạn (\"Friendship day\") (2021)\n",
                          "10. Nắng thủy tinh (\"Glass Sunshine\") (Cover) (2022)"]
             p_cap = "".join(p_cap_spl)
-            bot.send_photo(message.chat.id, photo=p_img, caption=p_cap)
+            bot.send_photo(message.chat.id, photo="images/products.jpg", caption=p_cap)
         except Exception as e:
             bot.send_message(6180286860, e)
     else:
@@ -229,24 +169,6 @@ def common_details(message):
 def common_details(message):
     if started == True:
         try:
-            pi_img_url = "https://cdn-images.vtv.vn/zoom/640_400/66349b6076cb4dee98746cf1/2024/06/03/suni-1-7e1a2c61-04dc-4770-a084-dac7ff9e349c-8d8205f8-acbd-4809-b56d-d06978a2a8a6.jpeg"
-
-            # Tải ảnh từ URL
-            response = requests.get(pi_img_url)
-
-            # Sử dụng BytesIO để xử lý tệp nhị phân của ảnh
-            pi_img_1 = BytesIO(response.content)
-
-            # -----
-
-            pi_img_url = "https://media.viez.vn/prod/2023/1/6/large_Untitled_3_3_36a2f56038.jpg"
-
-            # Tải ảnh từ URL
-            response = requests.get(pi_img_url)
-
-            # Sử dụng BytesIO để xử lý tệp nhị phân của ảnh
-            pi_img_2 = BytesIO(response.content)
-
             pi_cap_spl = ["Influence on social media:\n\n",
                           "+) 386.000 Followers on Instagram\n",
                           "+) 1.200.000 Followers on Facebook\n",
@@ -261,8 +183,8 @@ def common_details(message):
             pi_cap_1 = "".join(pi_cap_spl[:5])
             pi_cap_2 = "".join(pi_cap_spl[5:])
 
-            bot.send_photo(message.chat.id, photo=pi_img_1, caption=pi_cap_1)
-            bot.send_photo(message.chat.id, photo=pi_img_2, caption=pi_cap_2)
+            bot.send_photo(message.chat.id, photo="images/public_image1.jpg", caption=pi_cap_1)
+            bot.send_photo(message.chat.id, photo="images/public_image2.jpg", caption=pi_cap_2)
         except Exception as e:
             bot.send_message(6180286860, e)
     else:
