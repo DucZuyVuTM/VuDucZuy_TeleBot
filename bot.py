@@ -15,6 +15,10 @@ welcome_called = False
 started = False
 #-------------------------------------------------------------------------------
 
+@app.route("/", methods=["GET"])
+def index():
+    return "Bot is running!", 200
+
 @app.route('/webhook', methods=['POST'])
 def webhook():
     json_str = request.get_data().decode('UTF-8')
