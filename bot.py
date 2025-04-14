@@ -59,12 +59,15 @@ def send_welcome(message):
         started = True
     except Exception as e:
         bot.send_message(6180286860, e)
+        bot.send_message(6180286860, "Error from user:" +
+                        "\nID: " + str(message.from_user.id) +
+                        "\nUsername: " + str(message.from_user.username))
 
 @bot.message_handler(func=lambda message: message.text == "1")
 @bot.message_handler(func=lambda message: message.text.lower() == "common details")
 def common_details(message):
-    if started == True:
-        try:
+    try:
+        if started == True:        
             cd_cap_spl = ["Common details:\n\n",
                           "1. Real name: Ngo Dang Thu Giang\n",
                           "2. Date of Birth: 6/09/1990\n",
@@ -79,17 +82,20 @@ def common_details(message):
                           "8. Genres: V-Pop, R&B, Ballad"]
             cd_cap = "".join(cd_cap_spl)
             with open("./images/common_details.jpg", "rb") as photo:
-                bot.send_photo(message.chat.id, photo=photo, caption=cd_cap)
-        except Exception as e:
-            bot.send_message(6180286860, e)
-    else:
-        bot.send_message(message.chat.id, text="Bot is not started")
+                bot.send_photo(message.chat.id, photo=photo, caption=cd_cap)        
+        else:
+            bot.send_message(message.chat.id, text="Bot is not started")
+    except Exception as e:
+        bot.send_message(6180286860, e)
+        bot.send_message(6180286860, "Error from user:" +
+                        "\nID: " + str(message.from_user.id) +
+                        "\nUsername: " + str(message.from_user.username))
 
 @bot.message_handler(func=lambda message: message.text == "2")
 @bot.message_handler(func=lambda message: message.text.lower() == "career")
 def common_details(message):
-    if started == True:
-        try:
+    try:
+        if started == True:        
             c_text_spl = ["Suni Ha Linh's singing career:\n\n",
                           "2008: First prize in Cleverteam Superstar contest.\n",
                           "2012: Runner-up in Vietnam's Kpop Star Hunt season 2.\n",
@@ -133,17 +139,20 @@ def common_details(message):
             with open("./images/career2.jpg", "rb") as photo:
                 bot.send_photo(message.chat.id, photo=photo, caption=c_text_2)
             with open("./images/career3.jpg", "rb") as photo:
-                bot.send_photo(message.chat.id, photo=photo, caption=c_text_3)
-        except Exception as e:
-            bot.send_message(6180286860, e)
-    else:
-        bot.send_message(message.chat.id, text="Bot is not started")
+                bot.send_photo(message.chat.id, photo=photo, caption=c_text_3)        
+        else:
+            bot.send_message(message.chat.id, text="Bot is not started")
+    except Exception as e:
+        bot.send_message(6180286860, e)
+        bot.send_message(6180286860, "Error from user:" +
+                        "\nID: " + str(message.from_user.id) +
+                        "\nUsername: " + str(message.from_user.username))
 
 @bot.message_handler(func=lambda message: message.text == "3")
 @bot.message_handler(func=lambda message: message.text.lower() == "awards")
 def common_details(message):
-    if started == True:
-        try:
+    try:
+        if started == True:
             a_cap_spl = ["Suni Ha Linh's Awards:\n\n",
                          "1. Zing Music Awards 2016: Best R&B / Soul Song of the Year\n",
                          "2. Làn sóng Xanh 2016 (\"The Green Wave\"): Top 10 Song of the Year\n",
@@ -152,17 +161,20 @@ def common_details(message):
                          "5. Keeng Young Awards 2017: Best Pop Song of the Year"]
             a_cap = "".join(a_cap_spl)
             with open("./images/awards.jpg", "rb") as photo:
-                bot.send_photo(message.chat.id, photo=photo, caption=a_cap)
-        except Exception as e:
-            bot.send_message(6180286860, e)
-    else:
-        bot.send_message(message.chat.id, text="Bot is not started")
+                bot.send_photo(message.chat.id, photo=photo, caption=a_cap)        
+        else:
+            bot.send_message(message.chat.id, text="Bot is not started")
+    except Exception as e:
+        bot.send_message(6180286860, e)
+        bot.send_message(6180286860, "Error from user:" +
+                        "\nID: " + str(message.from_user.id) +
+                        "\nUsername: " + str(message.from_user.username))
 
 @bot.message_handler(func=lambda message: message.text == "4")
 @bot.message_handler(func=lambda message: message.text.lower() == "products")
 def common_details(message):
-    if started == True:
-        try:
+    try:
+        if started == True:
             p_cap_spl = ["*) 41 is the number of products, including new songs and covers\n\n",
                          "Top 10 Featured Songs:\n\n",
                          "1. Cảm ơn người đã rời xa tôi (\"Thank you for leaving me\") (2015)\n",
@@ -177,17 +189,20 @@ def common_details(message):
                          "10. Nắng thủy tinh (\"Glass Sunshine\") (Cover) (2022)"]
             p_cap = "".join(p_cap_spl)
             with open("./images/products.jpg", "rb") as photo:
-                bot.send_photo(message.chat.id, photo=photo, caption=p_cap)
-        except Exception as e:
-            bot.send_message(6180286860, e)
-    else:
-        bot.send_message(message.chat.id, text="Bot is not started")
+                bot.send_photo(message.chat.id, photo=photo, caption=p_cap)        
+        else:
+            bot.send_message(message.chat.id, text="Bot is not started")
+    except Exception as e:
+        bot.send_message(6180286860, e)
+        bot.send_message(6180286860, "Error from user:" +
+                        "\nID: " + str(message.from_user.id) +
+                        "\nUsername: " + str(message.from_user.username))
 
 @bot.message_handler(func=lambda message: message.text == "5")
 @bot.message_handler(func=lambda message: message.text.lower() == "public image")
 def common_details(message):
-    if started == True:
-        try:
+    try:
+        if started == True:
             pi_cap_spl = ["Influence on social media:\n\n",
                           "+) 386.000 Followers on Instagram\n",
                           "+) 1.200.000 Followers on Facebook\n",
@@ -204,11 +219,14 @@ def common_details(message):
             with open("./images/public_image1.jpg", "rb") as photo:
                 bot.send_photo(message.chat.id, photo=photo, caption=pi_cap_1)
             with open("./images/public_image2.jpg", "rb") as photo:
-                bot.send_photo(message.chat.id, photo=photo, caption=pi_cap_2)
-        except Exception as e:
-            bot.send_message(6180286860, e)
-    else:
-        bot.send_message(message.chat.id, text="Bot is not started")
+                bot.send_photo(message.chat.id, photo=photo, caption=pi_cap_2)        
+        else:
+            bot.send_message(message.chat.id, text="Bot is not started")
+    except Exception as e:
+        bot.send_message(6180286860, e)
+        bot.send_message(6180286860, "Error from user:" +
+                        "\nID: " + str(message.from_user.id) +
+                        "\nUsername: " + str(message.from_user.username))
 
 @bot.message_handler(commands=['exit'])
 @bot.message_handler(func=lambda message: message.text.lower() == "exit")
@@ -220,13 +238,19 @@ def exit(message):
         started = False
     except Exception as e:
         bot.send_message(6180286860, e)
+        bot.send_message(6180286860, "Error from user:" +
+                        "\nID: " + str(message.from_user.id) +
+                        "\nUsername: " + str(message.from_user.username))
 
 @bot.message_handler(func=lambda message: True)
 def echo_unav(message):
     try:
-        bot.send_message(message.chat.id, text="Invalid message")
+        bot.delete_message(message.chat.id, message.message_id)
     except Exception as e:
         bot.send_message(6180286860, e)
+        bot.send_message(6180286860, "Error from user:" +
+                        "\nID: " + str(message.from_user.id) +
+                        "\nUsername: " + str(message.from_user.username))
 
 @app.route('/set_webhook', methods=['GET'])
 def set_webhook():
