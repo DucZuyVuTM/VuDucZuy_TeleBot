@@ -2,7 +2,6 @@ import os
 import telebot
 from telebot import types
 from flask import Flask, request
-from io import BytesIO
 
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 bot = telebot.TeleBot(TELEGRAM_TOKEN)

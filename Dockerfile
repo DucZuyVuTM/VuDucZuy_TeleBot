@@ -1,5 +1,5 @@
 # Sử dụng image Python chính thức, phiên bản mới nhất
-FROM python:3.11-slim
+FROM python:3.13-alpine
 
 # Đặt biến môi trường để không lưu bộ đệm khi in
 ENV PYTHONDONTWRITEBYTECODE 1
