@@ -61,7 +61,7 @@ def send_welcome(message):
         bot.send_message(6180286860, e)
         bot.send_message(6180286860, "Error from user:" +
                         "\nID: " + str(message.from_user.id) +
-                        "\nUsername: " + str(message.from_user.username))
+                        "\nUsername: @" + str(message.from_user.username))
 
 @bot.message_handler(func=lambda message: message.text == "1")
 @bot.message_handler(func=lambda message: message.text.lower() == "common details")
@@ -89,7 +89,7 @@ def common_details(message):
         bot.send_message(6180286860, e)
         bot.send_message(6180286860, "Error from user:" +
                         "\nID: " + str(message.from_user.id) +
-                        "\nUsername: " + str(message.from_user.username))
+                        "\nUsername: @" + str(message.from_user.username))
 
 @bot.message_handler(func=lambda message: message.text == "2")
 @bot.message_handler(func=lambda message: message.text.lower() == "career")
@@ -146,7 +146,7 @@ def common_details(message):
         bot.send_message(6180286860, e)
         bot.send_message(6180286860, "Error from user:" +
                         "\nID: " + str(message.from_user.id) +
-                        "\nUsername: " + str(message.from_user.username))
+                        "\nUsername: @" + str(message.from_user.username))
 
 @bot.message_handler(func=lambda message: message.text == "3")
 @bot.message_handler(func=lambda message: message.text.lower() == "awards")
@@ -168,7 +168,7 @@ def common_details(message):
         bot.send_message(6180286860, e)
         bot.send_message(6180286860, "Error from user:" +
                         "\nID: " + str(message.from_user.id) +
-                        "\nUsername: " + str(message.from_user.username))
+                        "\nUsername: @" + str(message.from_user.username))
 
 @bot.message_handler(func=lambda message: message.text == "4")
 @bot.message_handler(func=lambda message: message.text.lower() == "products")
@@ -196,7 +196,7 @@ def common_details(message):
         bot.send_message(6180286860, e)
         bot.send_message(6180286860, "Error from user:" +
                         "\nID: " + str(message.from_user.id) +
-                        "\nUsername: " + str(message.from_user.username))
+                        "\nUsername: @" + str(message.from_user.username))
 
 @bot.message_handler(func=lambda message: message.text == "5")
 @bot.message_handler(func=lambda message: message.text.lower() == "public image")
@@ -226,7 +226,7 @@ def common_details(message):
         bot.send_message(6180286860, e)
         bot.send_message(6180286860, "Error from user:" +
                         "\nID: " + str(message.from_user.id) +
-                        "\nUsername: " + str(message.from_user.username))
+                        "\nUsername: @" + str(message.from_user.username))
 
 @bot.message_handler(commands=['exit'])
 @bot.message_handler(func=lambda message: message.text.lower() == "exit")
@@ -240,7 +240,7 @@ def exit(message):
         bot.send_message(6180286860, e)
         bot.send_message(6180286860, "Error from user:" +
                         "\nID: " + str(message.from_user.id) +
-                        "\nUsername: " + str(message.from_user.username))
+                        "\nUsername: @" + str(message.from_user.username))
 
 @bot.message_handler(func=lambda message: True)
 def echo_unav(message):
@@ -250,7 +250,7 @@ def echo_unav(message):
         bot.send_message(6180286860, e)
         bot.send_message(6180286860, "Error from user:" +
                         "\nID: " + str(message.from_user.id) +
-                        "\nUsername: " + str(message.from_user.username))
+                        "\nUsername: @" + str(message.from_user.username))
 
 @app.route('/set_webhook', methods=['GET'])
 def set_webhook():
