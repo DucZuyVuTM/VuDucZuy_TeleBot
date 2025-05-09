@@ -249,8 +249,8 @@ def echo_unav(message):
     except Exception as e:
         bot.send_message(6180286860, e)
         bot.send_message(6180286860, "Error from user:" +
-                        "\nID: " + str(message.from_user.id) +
-                        "\nUsername: @" + str(message.from_user.username))
+                        "\nID: `" + str(message.from_user.id) +
+                        "`\nUsername: @" + str(message.from_user.username))
 
 @app.route('/set_webhook', methods=['GET'])
 def set_webhook():
