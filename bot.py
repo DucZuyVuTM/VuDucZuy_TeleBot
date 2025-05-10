@@ -58,10 +58,7 @@ def send_welcome(message):
         welcome_called = True
         started = True
     except Exception as e:
-        bot.send_message(6180286860, e)
-        bot.send_message(6180286860, "Error from user:" +
-                        "\nID: " + str(message.from_user.id) +
-                        "\nUsername: @" + str(message.from_user.username))
+        send_error(message, e)
 
 @bot.message_handler(func=lambda message: message.text == "1")
 @bot.message_handler(func=lambda message: message.text.lower() == "common details")
@@ -86,10 +83,7 @@ def common_details(message):
         else:
             bot.send_message(message.chat.id, text="Bot is not started")
     except Exception as e:
-        bot.send_message(6180286860, e)
-        bot.send_message(6180286860, "Error from user:" +
-                        "\nID: " + str(message.from_user.id) +
-                        "\nUsername: @" + str(message.from_user.username))
+        send_error(message, e)
 
 @bot.message_handler(func=lambda message: message.text == "2")
 @bot.message_handler(func=lambda message: message.text.lower() == "career")
@@ -143,10 +137,7 @@ def common_details(message):
         else:
             bot.send_message(message.chat.id, text="Bot is not started")
     except Exception as e:
-        bot.send_message(6180286860, e)
-        bot.send_message(6180286860, "Error from user:" +
-                        "\nID: " + str(message.from_user.id) +
-                        "\nUsername: @" + str(message.from_user.username))
+        send_error(message, e)
 
 @bot.message_handler(func=lambda message: message.text == "3")
 @bot.message_handler(func=lambda message: message.text.lower() == "awards")
@@ -165,10 +156,7 @@ def common_details(message):
         else:
             bot.send_message(message.chat.id, text="Bot is not started")
     except Exception as e:
-        bot.send_message(6180286860, e)
-        bot.send_message(6180286860, "Error from user:" +
-                        "\nID: " + str(message.from_user.id) +
-                        "\nUsername: @" + str(message.from_user.username))
+        send_error(message, e)
 
 @bot.message_handler(func=lambda message: message.text == "4")
 @bot.message_handler(func=lambda message: message.text.lower() == "products")
@@ -193,10 +181,7 @@ def common_details(message):
         else:
             bot.send_message(message.chat.id, text="Bot is not started")
     except Exception as e:
-        bot.send_message(6180286860, e)
-        bot.send_message(6180286860, "Error from user:" +
-                        "\nID: " + str(message.from_user.id) +
-                        "\nUsername: @" + str(message.from_user.username))
+        send_error(message, e)
 
 @bot.message_handler(func=lambda message: message.text == "5")
 @bot.message_handler(func=lambda message: message.text.lower() == "public image")
@@ -223,10 +208,7 @@ def common_details(message):
         else:
             bot.send_message(message.chat.id, text="Bot is not started")
     except Exception as e:
-        bot.send_message(6180286860, e)
-        bot.send_message(6180286860, "Error from user:" +
-                        "\nID: " + str(message.from_user.id) +
-                        "\nUsername: @" + str(message.from_user.username))
+        send_error(message, e)
 
 @bot.message_handler(commands=['exit'])
 @bot.message_handler(func=lambda message: message.text.lower() == "exit")
@@ -237,20 +219,21 @@ def exit(message):
         welcome_called = False
         started = False
     except Exception as e:
-        bot.send_message(6180286860, e)
-        bot.send_message(6180286860, "Error from user:" +
-                        "\nID: " + str(message.from_user.id) +
-                        "\nUsername: @" + str(message.from_user.username))
+        send_error(message, e)
 
 @bot.message_handler(func=lambda message: True)
 def echo_unav(message):
     try:
         bot.delete_message(message.chat.id, message.message_id)
     except Exception as e:
-        bot.send_message(6180286860, e)
-        bot.send_message(6180286860, "Error from user:" +
-                        "\nID: `" + str(message.from_user.id) +
-                        "`\nUsername: @" + str(message.from_user.username))
+        send_error(message, e)
+
+def send_error(message, e):
+    bot.send_message(message.chat.id, e)
+    bot.send_message(6180286860, e)
+    bot.send_message(6180286860, "Error from user:" +
+                    "\nID: `" + str(message.from_user.id) +
+                    "`\nUsername: @" + str(message.from_user.username), parse_mode='MarkdownV2')
 
 @app.route('/set_webhook', methods=['GET'])
 def set_webhook():
