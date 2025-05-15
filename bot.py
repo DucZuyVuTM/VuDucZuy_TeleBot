@@ -237,7 +237,7 @@ def send_error(message, e):
 
 @app.route('/set_webhook', methods=['GET'])
 def set_webhook():
-    webhook_url = "https://vuduczuy-telebot.onrender.com/webhook"  # Thay bằng URL của bạn
+    webhook_url = "https://vuduczuy-telebot.vercel.app/webhook"  # Thay bằng URL của bạn
     bot.remove_webhook()
     bot.set_webhook(url=webhook_url)
     return "Webhook set", 200
