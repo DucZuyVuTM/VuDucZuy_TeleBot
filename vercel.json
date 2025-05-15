@@ -8,6 +8,14 @@
     ],
     "routes": [
         {
+            "src": "/webhook",
+            "dest": "bot.py"
+        },
+        {
+            "src": "/set_webhook",
+            "dest": "bot.py"
+        },
+        {
             "src": "/(.*)",
             "dest": "bot.py"
         }
