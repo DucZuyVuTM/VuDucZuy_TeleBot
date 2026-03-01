@@ -15,9 +15,13 @@ bot = telebot.TeleBot(TELEGRAM_TOKEN)
 
 #-------------------------------------------------------------------------------
 # Global variables:
-welcome_called = False
-started = False
+user_data = {}
 #-------------------------------------------------------------------------------
+
+def get_user_status(chat_id):
+    if chat_id not in user_data:
+        user_data[chat_id] = {'started': False, 'welcome_called': False}
+    return user_data[chat_id]
 
 #-------------------------------------------------------------------------------
 # Webhook:
@@ -45,7 +49,7 @@ def set_webhook():
 @bot.message_handler(func=lambda message: message.text.lower() == "start")
 @bot.message_handler(func=lambda message: message.text.lower() == "menu")
 def send_welcome(message):
-    global welcome_called, started
+    status = get_user_status(message.chat.id)
     try:
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=False)
 
@@ -65,22 +69,26 @@ def send_welcome(message):
                         "4. Products\n",
                         "5. Public image\n\n",
                         "Please write the number corresponding to your choice or write the choice directly."]
-        if welcome_called == False:
+        
+        if status['welcome_called'] == False:
             menu_cap = "".join(menu_cap_spl)
         else:
-            menu_cap = "".join(menu_cap_spl[1:])            
+            menu_cap = "".join(menu_cap_spl[1:])
+        
         with open("./images/menu.jpg", "rb") as photo:
             bot.send_photo(message.chat.id, photo=photo, caption=menu_cap, reply_markup=markup)
-        welcome_called = True
-        started = True
+
+        status['welcome_called'] = True
+        status['started'] = True
     except Exception as e:
         send_error(message, e)
 
 @bot.message_handler(func=lambda message: message.text == "1")
 @bot.message_handler(func=lambda message: message.text.lower() == "common details")
 def get_common_details(message):
+    status = get_user_status(message.chat.id)
     try:
-        if started == True:        
+        if status['started'] == True:
             cd_cap_spl = ["Common details:\n\n",
                           "1. Real name: Ngo Dang Thu Giang\n",
                           "2. Date of Birth: 6/09/1990\n",
@@ -104,8 +112,9 @@ def get_common_details(message):
 @bot.message_handler(func=lambda message: message.text == "2")
 @bot.message_handler(func=lambda message: message.text.lower() == "career")
 def get_career(message):
+    status = get_user_status(message.chat.id)
     try:
-        if started == True:        
+        if status['started'] == True:
             c_text_spl = ["Suni Ha Linh's singing career:\n\n",
                           "2008: First prize in Cleverteam Superstar contest.\n",
                           "2012: Runner-up in Vietnam's Kpop Star Hunt season 2.\n",
@@ -158,8 +167,9 @@ def get_career(message):
 @bot.message_handler(func=lambda message: message.text == "3")
 @bot.message_handler(func=lambda message: message.text.lower() == "awards")
 def get_awards(message):
+    status = get_user_status(message.chat.id)
     try:
-        if started == True:
+        if status['started'] == True:
             a_cap_spl = ["Suni Ha Linh's Awards:\n\n",
                          "1. Zing Music Awards 2016: Best R&B / Soul Song of the Year\n",
                          "2. Làn sóng Xanh 2016 (\"The Green Wave\"): Top 10 Song of the Year\n",
@@ -177,8 +187,9 @@ def get_awards(message):
 @bot.message_handler(func=lambda message: message.text == "4")
 @bot.message_handler(func=lambda message: message.text.lower() == "products")
 def get_products(message):
+    status = get_user_status(message.chat.id)
     try:
-        if started == True:
+        if status['started'] == True:
             p_cap_spl = ["*) 41 is the number of products, including new songs and covers\n\n",
                          "Top 10 Featured Songs:\n\n",
                          "1. Cảm ơn người đã rời xa tôi (\"Thank you for leaving me\") (2015)\n",
@@ -202,8 +213,9 @@ def get_products(message):
 @bot.message_handler(func=lambda message: message.text == "5")
 @bot.message_handler(func=lambda message: message.text.lower() == "public image")
 def get_public_image(message):
+    status = get_user_status(message.chat.id)
     try:
-        if started == True:
+        if status['started'] == True:
             pi_cap_spl = ["Influence on social media:\n\n",
                           "+) 386.000 Followers on Instagram\n",
                           "+) 1.200.000 Followers on Facebook\n",
@@ -228,17 +240,15 @@ def get_public_image(message):
 
 @bot.message_handler(commands=['exit'])
 @bot.message_handler(func=lambda message: message.text.lower() == "exit")
-def exit(message):
-    global welcome_called, started
+def exit_bot(message):
     try:
-        bot.send_message(message.chat.id, text="Thank you for your interest in Suni!")
-        welcome_called = False
-        started = False
+        bot.send_message(message.chat.id, text="Thank you for your interest in Suni!\nSee you again.")
+        user_data.pop(message.chat.id, None)
     except Exception as e:
         send_error(message, e)
 
 @bot.message_handler(func=lambda message: True)
-def echo_unav(message):
+def delete_unavailable_message(message):
     try:
         bot.delete_message(message.chat.id, message.message_id)
     except Exception as e:
