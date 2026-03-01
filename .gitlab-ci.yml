@@ -1,0 +1,28 @@
+stages:
+  - test
+  - deploy
+
+variables:
+  WEBHOOK_URL: "https://vuduczuy-telebot.onrender.com/webhook"
+
+test:
+  stage: test
+  image: python:3.9
+  script:
+    - pip install -r requirements.txt
+    - echo "Add unit tests here"  # Placeholder for tests
+  only:
+    - main
+    - feature/*
+
+deploy:
+  stage: deploy
+  image: python:3.9
+  script:
+    - pip install -r requirements.txt
+    - curl -X GET "$WEBHOOK_URL/set_webhook"
+  environment:
+    name: production
+    url: $WEBHOOK_URL
+  only:
+    - main
