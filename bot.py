@@ -3,17 +3,24 @@ import telebot
 from telebot import types
 from flask import Flask, request
 
-TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
-bot = telebot.TeleBot(TELEGRAM_TOKEN)
-
-app = Flask(__name__)
 
 #-------------------------------------------------------------------------------
-# Biến chung:
+# Environment variables:
+TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
+WEBHOOK_URL = os.getenv('WEBHOOK_URL') + "/webhook"
+#-------------------------------------------------------------------------------
+
+app = Flask(__name__)
+bot = telebot.TeleBot(TELEGRAM_TOKEN)
+
+#-------------------------------------------------------------------------------
+# Global variables:
 welcome_called = False
 started = False
 #-------------------------------------------------------------------------------
 
+#-------------------------------------------------------------------------------
+# Webhook:
 @app.route("/", methods=["GET"])
 def index():
     return "Bot is running!", 200
@@ -25,6 +32,15 @@ def webhook():
     bot.process_new_updates([update])
     return '', 200
 
+@app.route('/set_webhook', methods=['GET'])
+def set_webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url=WEBHOOK_URL)
+    return "Webhook set", 200
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# Message handlers:
 @bot.message_handler(commands=['start'])
 @bot.message_handler(func=lambda message: message.text.lower() == "start")
 @bot.message_handler(func=lambda message: message.text.lower() == "menu")
@@ -62,7 +78,7 @@ def send_welcome(message):
 
 @bot.message_handler(func=lambda message: message.text == "1")
 @bot.message_handler(func=lambda message: message.text.lower() == "common details")
-def common_details(message):
+def get_common_details(message):
     try:
         if started == True:        
             cd_cap_spl = ["Common details:\n\n",
@@ -87,7 +103,7 @@ def common_details(message):
 
 @bot.message_handler(func=lambda message: message.text == "2")
 @bot.message_handler(func=lambda message: message.text.lower() == "career")
-def common_details(message):
+def get_career(message):
     try:
         if started == True:        
             c_text_spl = ["Suni Ha Linh's singing career:\n\n",
@@ -141,7 +157,7 @@ def common_details(message):
 
 @bot.message_handler(func=lambda message: message.text == "3")
 @bot.message_handler(func=lambda message: message.text.lower() == "awards")
-def common_details(message):
+def get_awards(message):
     try:
         if started == True:
             a_cap_spl = ["Suni Ha Linh's Awards:\n\n",
@@ -160,7 +176,7 @@ def common_details(message):
 
 @bot.message_handler(func=lambda message: message.text == "4")
 @bot.message_handler(func=lambda message: message.text.lower() == "products")
-def common_details(message):
+def get_products(message):
     try:
         if started == True:
             p_cap_spl = ["*) 41 is the number of products, including new songs and covers\n\n",
@@ -185,7 +201,7 @@ def common_details(message):
 
 @bot.message_handler(func=lambda message: message.text == "5")
 @bot.message_handler(func=lambda message: message.text.lower() == "public image")
-def common_details(message):
+def get_public_image(message):
     try:
         if started == True:
             pi_cap_spl = ["Influence on social media:\n\n",
@@ -234,13 +250,7 @@ def send_error(message, e):
     bot.send_message(6180286860, "Error from user:" +
                     "\nID: `" + str(message.from_user.id) +
                     "`\nUsername: @" + str(message.from_user.username), parse_mode='MarkdownV2')
-
-@app.route('/set_webhook', methods=['GET'])
-def set_webhook():
-    webhook_url = "https://vuduczuy-telebot.onrender.com/webhook"  # Thay bằng URL của bạn
-    bot.remove_webhook()
-    bot.set_webhook(url=webhook_url)
-    return "Webhook set", 200
+#-------------------------------------------------------------------------------
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)
