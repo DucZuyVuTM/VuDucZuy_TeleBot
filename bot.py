@@ -8,6 +8,7 @@ from flask import Flask, request
 # Environment variables:
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 WEBHOOK_URL = os.getenv('WEBHOOK_URL') + "/webhook"
+ADMIN_ID = os.getenv('ADMIN_ID')
 #-------------------------------------------------------------------------------
 
 app = Flask(__name__)
@@ -256,8 +257,8 @@ def delete_unavailable_message(message):
 
 def send_error(message, e):
     bot.send_message(message.chat.id, "Error occurred. Please try again later.")
-    bot.send_message(6180286860, e)
-    bot.send_message(6180286860, "Error from user:" +
+    bot.send_message(ADMIN_ID, e)
+    bot.send_message(ADMIN_ID, "Error from user:" +
                     "\nID: `" + str(message.from_user.id) +
                     "`\nUsername: @" + str(message.from_user.username), parse_mode='MarkdownV2')
 #-------------------------------------------------------------------------------
