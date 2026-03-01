@@ -255,7 +255,7 @@ def delete_unavailable_message(message):
         send_error(message, e)
 
 def send_error(message, e):
-    bot.send_message(message.chat.id, e)
+    bot.send_message(message.chat.id, "Error occurred. Please try again later.")
     bot.send_message(6180286860, e)
     bot.send_message(6180286860, "Error from user:" +
                     "\nID: `" + str(message.from_user.id) +
